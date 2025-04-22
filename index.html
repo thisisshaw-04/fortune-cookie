@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortune Cookie</title>
+    <style>
+        /* STYLE FOR THE INPUT FIELD */
+        #charInput {
+            width: 50%;
+            border-color:  rgb(255, 193, 100);
+            border-style:dashed;
+            border-radius: 3rem;
+            padding: 10px;
+            font-family: "Raleway", sans-serif;
+            padding-left: 16px;
+        }
+
+        /* STYLE FOR THE SUBMIT BUTTON */
+        #submitButton {
+            padding: 12px;
+            background-color: rgb(255, 193, 100);
+            border-style: none;
+            border-radius: 3rem;
+            font-family: "Raleway", sans-serif;
+        }
+
+        /* STYLE FOR THE IMAGE */
+     
+        /* STYLE FOR THE IMAGE */
+        #displayedImage {
+            display: none;
+            transition: filter 0.3s ease;
+        }
+
+        /* HOVER EFFECT: IMAGE TURNS BLACK */
+        #displayedImage:hover {
+            filter: brightness(105%);
+            rotate: 1deg;
+        }
+
+        body {
+            margin: 0%;
+            padding: 0%;
+            font-family: "Tangerine", serif;
+            font-weight: 100;
+            font-style: normal;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url(images/cookiebg.jpg);
+            background-size: 60%;
+            background-position: center;
+            min-height: 100vh;
+        }
+
+        section {
+            padding: 6.5vmin;
+            background-color: rgb(255, 255, 255);
+            border-radius: 3rem;
+            border: solid #000;
+            border-width: 2px;
+            max-width: max-content;
+        }
+
+        h1 {
+            font-size: 5rem;
+            margin: 0;
+        }
+
+        .page_header {
+            display: block;
+            text-align: center;
+        }
+
+        .input {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .image {
+            display: block;
+            max-width: 80vmin;
+        }
+
+        .image img {
+            padding-top: 3vmin;
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            border-radius: 3rem;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Flavors&family=Splash&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <section>
+        <div class="page_header">
+            <h1>fortune cookie reading</h1>
+        </div>
+        <div class="input">
+            <!-- INPUT FIELD FOR 1 CHARACTER -->
+            <input type="text" placeholder="Enter the first letter of your name" id="charInput" maxlength="1">
+
+            <!-- BUTTON TO DISPLAY IMAGE -->
+            <button onclick="displayImage()" id="submitButton">Show Image</button>
+        </div>
+        <div class="image">
+            <!-- IMAGE TO DISPLAY -->
+            <img id="displayedImage" src="" alt="Displayed Image">
+
+        </div>
+    </section>
+    <!-- Image Display Script Below -->
+    <script>
+        // Array of images
+        // DIRECTIONS: UPDATE THE URLS WITH THE RELATIVE LINKS OF YOUR IMAGES
+        const images = [];
+        for (let i = 0; i < 26; i++) {
+            images.push("images/cookie" + (i + 1) + ".png")
+        }
+
+        function displayImage() {
+            const input = document.getElementById("charInput").value.toUpperCase();
+            const imgElement = document.getElementById("displayedImage");
+
+            // Assign an image based on character (A-Z)
+            const index = input.charCodeAt(0) - 65; // 'A' is 65 in ASCII
+            if (index >= 0 && index < images.length) {
+                imgElement.src = images[index];
+                imgElement.style.display = "block";
+            } else {
+                /* 
+                alert("Please enter a letter between A and Z.");
+                imgElement.style.display = "none";
+                */
+
+                // IF INVALID INPUT IS ENTERED, DISPLAY ALTERNATE IMAGE
+                imgElement.src = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmtkdnJhMXY4Njd1cXR3MTM3MW1nMzZ1NXNhNHlhOHA0MWF2dDUzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13dRJkj5wgKq9q/giphy.gif"
+                imgElement.style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
